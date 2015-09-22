@@ -1,0 +1,63 @@
+   body {
+        font-family: Arial, sans-serif;   
+    }
+    h1 {
+        margin: 0px;
+        padding: 12px;
+        font-size: 1.5em;
+    }
+    input {
+        margin: 12px 0px 12px 0px   
+    }
+    #head {
+        width: 801px;
+        margin: 0px auto;
+        border: 1px solid #ccc;
+    }
+    #face {
+        background-image: url(../images/mad-lib-happy-face.png);
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: 40%;
+        height: 100px;
+        width: 200px;
+        float: left;
+        border-right: 1px solid #ccc;
+    }
+    #logo {
+        background-image: url(../images/ng-mad-libs-logo.png);
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 100px;
+        width: 600px;
+        float: left;
+    }
+    .clearFloat {
+        clear: both;
+    }
+    #body {
+        width: 801px;
+        margin: 0px auto;
+        border-left: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+    }
+    .col1, .col2, .col3{
+        float:left;
+        width: 33%;
+        text-align:center;
+    }
+    #fields{
+        padding: 0px 0px 25px 0px;   
+    }
+    #copy {
+        padding:45px;   
+    }
+    .fillin {
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 1px solid #000;
+        text-align: center;
+    }
