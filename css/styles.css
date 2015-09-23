@@ -7,7 +7,8 @@
         font-size: 1.5em;
     }
     input {
-        margin: 12px 0px 12px 0px   
+        margin: 12px 0px 2px 0px;
+        border: 1px solid #555;
     }
     #head {
         width: 801px;
@@ -61,3 +62,17 @@
         border-bottom: 1px solid #000;
         text-align: center;
     }
+.inputGroup {
+    height: 44px;   
+}
+.errMsg {
+    color:red;
+    font-size: 10px;
+}
+.ng-submitted .ng-invalid {
+    border-color: red;   
+}
+.alignRight {
+    float:right;
+    margin: 0px 56px 0px 0px;
+}

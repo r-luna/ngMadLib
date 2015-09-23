@@ -3,6 +3,7 @@
     <head><title>ngMadLib</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
     <script data-require="angular.js@1.3.10" data-semver="1.3.10" src="https://code.angularjs.org/1.3.10/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
     <script data-require="angular.js@1.3.10" data-semver="1.3.10" src="scripts/app.js"></script>
 </head>
 <body>
@@ -13,26 +14,76 @@
 		<div class="clearFloat"></div>
 	</div>
     <div id="body" ng-controller="controller1">
-        <div id="fields">
-            <h1>Provide the following words</h1>
-            <div class="col1">
-                <input type="text" placeholder="male name" ng-model="c.malename" />
-                <input type="text" placeholder="job title" ng-model="c.jobtitle" />
-                <input type="text" placeholder="tedious task" ng-model="c.tedioustask" />
-            </div>
-            <div class="col2">
-                <input type="text" placeholder="dirty task" ng-model="c.dirtytask" />
-                <input type="text" placeholder="celebrity" ng-model="c.celebrity" />
-                <input type="text" placeholder="useless skill" ng-model="c.useless" />
-            </div>
-            <div class="col3">
-                <input type="text" placeholder="obnoxious celebrity" ng-model="c.obnoxious" />
-                <input type="text" placeholder="huge number" ng-model="c.hugenumber" />
-                <input type="text" placeholder="adjective" ng-model="c.adjective" />
-            </div>
+        <div id="fields" ng-show="ui.canShowForm">
+            <form name="myForm" ng-submit="validateForm()" novalidate>
+                <h1>Provide the following words</h1>
+                <div class="col1">
+                    <div class="inputGroup">
+                        <input type="text" name="malename" required placeholder="male name" ng-model="c.malename" />
+                        <div class="errMsg" ng-if="myForm.$submitted && myForm.malename.$error.required">
+                            This field is required.
+                        </div>
+                    </div>
+                    <div class="inputGroup">
+                        <input type="text" name="jobtitle" required placeholder="job title" ng-model="c.jobtitle" />
+                        <div ng-if="myForm.$submitted" ng-messages="myForm.jobtitle.$error">
+                            <div class="errMsg" ng-message="required">This field is required.</div>
+                        </div>
+                    </div>
+                    <div class="inputGroup">
+                        <input type="text" name="tedioustask" required placeholder="tedious task" ng-model="c.tedioustask" />
+                        <div ng-if="myForm.$submitted" ng-messages="myForm.tedioustask.$error">
+                            <div class="errMsg" ng-message="required">This field is required.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col2">
+                    <div class="inputGroup">
+                        <input type="text" name="dirtytask" required placeholder="dirty task" ng-model="c.dirtytask" />
+                        <div ng-if="myForm.$submitted" ng-messages="myForm.dirtytask.$error">
+                            <div class="errMsg" ng-message="required">This field is required.</div>
+                        </div>
+                    </div>
+                    <div class="inputGroup">
+                        <input type="text" name="celebrity" required placeholder="celebrity" ng-model="c.celebrity" />
+                        <div ng-if="myForm.$submitted" ng-messages="myForm.celebrity.$error">
+                            <div class="errMsg" ng-message="required">This field is required.</div>
+                        </div>
+                    </div>
+                    <div class="inputGroup">
+                        <input type="text" name="useless" required placeholder="useless skill" ng-model="c.useless" />
+                        <div ng-if="myForm.$submitted" ng-messages="myForm.useless.$error">
+                            <div class="errMsg" ng-message="required">This field is required.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col3">
+                    <div class="inputGroup">
+                        <input type="text" name="obnoxious" required placeholder="obnoxious celebrity" ng-model="c.obnoxious" />
+                        <div ng-if="myForm.$submitted" ng-messages="myForm.obnoxious.$error">
+                            <div class="errMsg" ng-message="required">This field is required.</div>
+                        </div>
+                    </div>
+                    <div class="inputGroup">
+                        <input type="text" name="hugenumber" required placeholder="huge number" ng-model="c.hugenumber" ng-pattern="/^\d+$/"/>
+                        <div ng-if="myForm.$submitted" ng-messages="myForm.hugenumber.$error">
+                            <div class="errMsg" ng-message="required">This field is required.</div>
+                            <div class="errMsg" ng-message="pattern">Value must be a number.</div>
+                        </div>
+                    </div>
+                    <div class="inputGroup">
+                        <input type="text" name="adjective" required placeholder="adjective" ng-model="c.adjective" />
+                        <div ng-if="myForm.$submitted" ng-messages="myForm.adjective.$error">
+                            <div class="errMsg" ng-message="required">This field is required.</div>
+                        </div>
+                    </div>
+                </div>
+                <input class="alignRight" type="submit" ng-click="validateForm()" value="Generate My Mad Lib" />
+            </form>
+            <!--pre>{{ myForm.hugenumber.$error | json }}</pre-->
             <div class="clearFloat"></div>
         </div>
-        <div id="copy">
+        <div id="copy" ng-show="ui.canShowMadLib">
             <input class="fillin" type="text" readonly value="{{ c.malename }}" placeholder="male name"> was a 
             <input class="fillin" type="text" readonly value="{{ c.jobtitle }}" placeholder="job title"> whoe loved technology. Although he loved parts of his job, he absolutely hated 
             <input class="fillin" type="text" readonly value="{{ c.tedioustask }}" placeholder="tedious task"> and 
@@ -47,6 +98,9 @@
             <input class="fillin" type="text" readonly value="{{ c.obnoxious }}" placeholder="oboxious celebrity"> that only loved 
             <input class="fillin" type="text" readonly value="{{ c.dirtytask }}" placeholder="dirty tasks"> but did it 
             <input class="fillin" type="text" readonly value="{{ c.hugenumber }}" placeholder="huge number"> faster.
+            <br><br>
+            <input class="alignRight" type="button" value="Start Over" ng-click="startOver()" />
+            <div class="clearFloat"></div>
         </div>
 	</div>
 	
